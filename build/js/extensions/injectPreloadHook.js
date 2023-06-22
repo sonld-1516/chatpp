@@ -34,7 +34,7 @@ defineProperties_handler = {
 Object.defineProperties = new Proxy(Object.defineProperties, defineProperties_handler);
 `;
 
-var script = document.createElement('script');
-script.textContent = preload_hook_code;
-(document.head || document.documentElement).appendChild(script);
-script.remove();
+// var script = document.createElement('script');
+// script.textContent = preload_hook_code;
+// (document.head || document.documentElement).appendChild(script);
+// script.remove();

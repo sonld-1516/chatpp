@@ -2,7 +2,7 @@
     "name": "Chat++ for Chatwork",
     "short_name": "Chat++",
     "version": "5.10.2",
-    "manifest_version": 2,
+    "manifest_version": 3,
     "description": "An all-in-one Chatwork Enhancement Toolkit which provides many useful features!",
     "content_scripts": [
         {
@@ -26,22 +26,26 @@
         }
     ],
     "background": {
-        "scripts": ["js/extensions/background.js"]
+      "service_worker": "js/extensions/background.js"
     },
     "web_accessible_resources": [
-        "js/extensions/preloadHook.js",
-        "js/libraries/caretposition.js",
-        "js/libraries/fuse.min.js",
-        "js/internals/all.js"
+      {
+        "resources": ["js/libraries/caretposition.js", "js/libraries/fuse.min.js", "js/internals/all.js"],
+        "matches": ["http://www.chatwork.com/*"]
+      }
     ],
-    "browser_action": {
-        "default_icon": "img/icon64.png",
+    "action": {
+        "default_icon": {
+          "16": "img/icon64.png"
+        },
         "default_popup": "html/popup.html"
     },
     "permissions": [
-        "storage",
-        "https://www.chatwork.com/*",
-        "https://kcw.kddi.ne.jp/*"
+        "storage"
+    ],
+    "host_permissions": [
+      "https://www.chatwork.com/*",
+      "https://kcw.kddi.ne.jp/*"
     ],
     "options_page": "html/emoticon.html",
     "icons": {
@@ -49,5 +53,8 @@
         "64": "img/icon64.png",
         "128": "img/icon128.png"
     },
-    "homepage_url": "http://chatpp.thangtd.com"
+    "homepage_url": "http://chatpp.thangtd.com",
+    "content_security_policy": {
+      "extension_pages": "script-src 'self'; object-src 'self';"
+    }
 }

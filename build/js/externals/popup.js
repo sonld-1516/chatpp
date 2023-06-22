@@ -237,7 +237,7 @@ var Common = function () {
     }, {
         key: "getAppDetail",
         value: function getAppDetail() {
-            return chrome.app.getDetails();
+            return chrome.runtime.getManifest();
         }
     }, {
         key: "getAppVersion",
@@ -562,9 +562,9 @@ function setVersionType() {
         }
         local_stored_data[Const.CHROME_LOCAL_KEY]["version"] = common.getAppVersion();
         local_stored_data[Const.CHROME_LOCAL_KEY]["version_name"] = common.getAppVersionName();
-        chrome.browserAction.getBadgeText({}, function (result) {
+        chrome.action.getBadgeText({}, function (result) {
             if (result === "new") {
-                chrome.browserAction.setBadgeText({ text: "" });
+                chrome.action.setBadgeText({ text: "" });
                 common.openNewUrl("html/change_logs.html");
             }
         });

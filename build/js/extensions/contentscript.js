@@ -237,7 +237,7 @@ var Common = function () {
     }, {
         key: "getAppDetail",
         value: function getAppDetail() {
-            return chrome.app.getDetails();
+            return chrome.runtime.getManifest();
         }
     }, {
         key: "getAppVersion",

@@ -773,7 +773,7 @@ class Mention {
         }
         let chat_send_tool = $("#_chatSendArea ul").first();
         chat_send_tool.append(
-            $("<li>", {
+            $("<button>", {
                 id: "infoTag",
                 class: "_showDescription _chatppbutton chatInput__element",
                 attr: {
@@ -788,7 +788,7 @@ class Mention {
             })
         );
         chat_send_tool.append(
-            $("<li>", {
+            $("<button>", {
                 id: "titleTag",
                 class: "_showDescription _chatppbutton chatInput__element",
                 attr: {
@@ -802,7 +802,7 @@ class Mention {
             })
         );
         chat_send_tool.append(
-            $("<li>", {
+            $("<button>", {
                 id: "codeTag",
                 class: "_showDescription _chatppbutton chatInput__element",
                 attr: {
@@ -816,21 +816,21 @@ class Mention {
             })
         );
 
-        chat_send_tool.append(
-            $("<li>", {
-                id: "_addUserButton",
-                class: "_showDescription chatInput__element",
-                css: {
-                    "display": "inline-block"
-                },
-                attr: {
-                    "role": "button",
-                    "aria-label": "Add all users mentioned in chat box to this Room"
-                }
-            }).append(
-                $("<span>", { class: "icoFontAddBtn icoSizeLarge" })
-            )
-        );
+        // chat_send_tool.append(
+        //     $("<li>", {
+        //         id: "_addUserButton",
+        //         class: "_showDescription chatInput__element",
+        //         css: {
+        //             "display": "inline-block"
+        //         },
+        //         attr: {
+        //             "role": "button",
+        //             "aria-label": "Add all users mentioned in chat box to this Room"
+        //         }
+        //     }).append(
+        //         $("<span>", { class: "icoFontAddBtn icoSizeLarge" })
+        //     )
+        // );
 
         $("#infoTag").click(() => {
             this.setSuggestedChatTag("info");
@@ -844,9 +844,9 @@ class Mention {
             this.setSuggestedChatTag("code");
         });
 
-        $("#_addUserButton").click(() => {
-            chatwork.addMembersFromChatTextToCurrentRoom();
-        });
+        // $("#_addUserButton").click(() => {
+        //     chatwork.addMembersFromChatTextToCurrentRoom();
+        // });
     }
 }
 

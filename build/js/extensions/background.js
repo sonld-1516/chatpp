@@ -239,7 +239,7 @@ var Common = function () {
     }, {
         key: "getAppDetail",
         value: function getAppDetail() {
-            return chrome.app.getDetails();
+            return chrome.runtime.getManifest();
         }
     }, {
         key: "getAppVersion",
@@ -408,7 +408,7 @@ chrome.runtime.onInstalled.addListener(function () {
             version = data["version"];
         }
         if (!version || version != common.app_detail.version) {
-            chrome.browserAction.setBadgeText({ text: "new" });
+            chrome.action.setBadgeText({ text: "new" });
         }
     });
 });
@@ -416,42 +416,42 @@ chrome.runtime.onInstalled.addListener(function () {
 chrome.runtime.onMessage.addListener(function (request, sender, sendResponse) {
     if (request.contentScriptQuery == "fetchEmoticonsData") {
         var url = "https://dl.dropboxusercontent.com/" + request.query;
-        getJSON(url, function (error, responseData) {
-            if (error !== null) {
-                var data = {
-                    success: false,
-                    data_name: request.data_name
-                };
-                sendResponse(data);
-            }
-            responseData.success = true;
-            sendResponse(responseData);
-        });
+        // getJSON(url, (error, responseData) => {
+        //     if (error !== null) {
+        //         let data = {
+        //             success: false,
+        //             data_name: request.data_name
+        //         };
+        //         sendResponse(data);
+        //     }
+        //     responseData.success = true;
+        //     sendResponse(responseData);
+        // });
     }
 
     if (request.contentScriptQuery == "fetchAdvertisementData") {
-        getJSON(Const.ADVERTISEMENT_URL, function (error, responseData) {
-            sendResponse(responseData);
-        });
+        // getJSON(Const.ADVERTISEMENT_URL, (error, responseData) => {
+        //     sendResponse(responseData);
+        // });
     }
 
     return true;
 });
 
-function getJSON(url, callback) {
-    var xhr = new XMLHttpRequest();
-    xhr.open("GET", url, true);
-    xhr.responseType = "json";
-    xhr.onload = function () {
-        var status = xhr.status;
-        if (status === 200) {
-            callback(null, xhr.response);
-        } else {
-            callback(status, xhr.response);
-        }
-    };
-    xhr.send();
-}
+// function getJSON(url, callback) {
+//     let xhr = new XMLHttpRequest();
+//     xhr.open("GET", url, true);
+//     xhr.responseType = "json";
+//     xhr.onload = function() {
+//         let status = xhr.status;
+//         if (status === 200) {
+//             callback(null, xhr.response);
+//         } else {
+//             callback(status, xhr.response);
+//         }
+//     };
+//     xhr.send();
+// }
 
 /***/ }),
 

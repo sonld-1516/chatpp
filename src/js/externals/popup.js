@@ -72,9 +72,9 @@ function setVersionType() {
         }
         local_stored_data[Const.CHROME_LOCAL_KEY]["version"] = common.getAppVersion();
         local_stored_data[Const.CHROME_LOCAL_KEY]["version_name"] = common.getAppVersionName();
-        chrome.browserAction.getBadgeText({}, (result) => {
+        chrome.action.getBadgeText({}, (result) => {
             if (result === "new") {
-                chrome.browserAction.setBadgeText({text: ""});
+                chrome.action.setBadgeText({text: ""});
                 common.openNewUrl("html/change_logs.html");
             }
         });

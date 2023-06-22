@@ -237,7 +237,7 @@ var Common = function () {
     }, {
         key: "getAppDetail",
         value: function getAppDetail() {
-            return chrome.app.getDetails();
+            return chrome.runtime.getManifest();
         }
     }, {
         key: "getAppVersion",
@@ -2950,7 +2950,7 @@ var Mention = function () {
                 return;
             }
             var chat_send_tool = $("#_chatSendArea ul").first();
-            chat_send_tool.append($("<li>", {
+            chat_send_tool.append($("<button>", {
                 id: "infoTag",
                 class: "_showDescription _chatppbutton chatInput__element",
                 attr: {
@@ -2963,7 +2963,7 @@ var Mention = function () {
                 },
                 html: "<strong>[info]</strong>"
             }));
-            chat_send_tool.append($("<li>", {
+            chat_send_tool.append($("<button>", {
                 id: "titleTag",
                 class: "_showDescription _chatppbutton chatInput__element",
                 attr: {
@@ -2975,7 +2975,7 @@ var Mention = function () {
                 },
                 html: "<strong>[title]</strong>"
             }));
-            chat_send_tool.append($("<li>", {
+            chat_send_tool.append($("<button>", {
                 id: "codeTag",
                 class: "_showDescription _chatppbutton chatInput__element",
                 attr: {
@@ -2988,17 +2988,21 @@ var Mention = function () {
                 html: "<strong>[code]</strong>"
             }));
 
-            chat_send_tool.append($("<li>", {
-                id: "_addUserButton",
-                class: "_showDescription chatInput__element",
-                css: {
-                    "display": "inline-block"
-                },
-                attr: {
-                    "role": "button",
-                    "aria-label": "Add all users mentioned in chat box to this Room"
-                }
-            }).append($("<span>", { class: "icoFontAddBtn icoSizeLarge" })));
+            // chat_send_tool.append(
+            //     $("<li>", {
+            //         id: "_addUserButton",
+            //         class: "_showDescription chatInput__element",
+            //         css: {
+            //             "display": "inline-block"
+            //         },
+            //         attr: {
+            //             "role": "button",
+            //             "aria-label": "Add all users mentioned in chat box to this Room"
+            //         }
+            //     }).append(
+            //         $("<span>", { class: "icoFontAddBtn icoSizeLarge" })
+            //     )
+            // );
 
             $("#infoTag").click(function () {
                 _this4.setSuggestedChatTag("info");
@@ -3012,9 +3016,9 @@ var Mention = function () {
                 _this4.setSuggestedChatTag("code");
             });
 
-            $("#_addUserButton").click(function () {
-                chatwork.addMembersFromChatTextToCurrentRoom();
-            });
+            // $("#_addUserButton").click(() => {
+            //     chatwork.addMembersFromChatTextToCurrentRoom();
+            // });
         }
     }]);
 

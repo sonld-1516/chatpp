@@ -117,7 +117,7 @@ class Common {
     }
 
     getAppDetail() {
-        return chrome.app.getDetails();
+        return chrome.runtime.getManifest();
     }
 
     getAppVersion() {
